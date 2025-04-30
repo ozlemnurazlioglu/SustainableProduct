@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -111,5 +112,59 @@ namespace SustainableProduct
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string name = textBox1.Text.Trim();
+            string description = textBox2.Text.Trim();
+            decimal price = 0;
+            decimal.TryParse(textBox3.Text.Trim(), out price);
+            string brand = textBox4.Text.Trim();
+            string category = textBox5.Text.Trim();
+            string tags = textBox6.Text.Trim();
+            decimal carbon = 0;
+            decimal.TryParse(textBox7.Text.Trim(), out carbon);
+
+            byte[] imageBytes = null;
+            if (pictureBox6.Image != null)
+            {
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    pictureBox6.Image.Save(ms, pictureBox6.Image.RawFormat);
+                    imageBytes = ms.ToArray();
+                }
+            }
+
+            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\ozlem\source\repos\SustainableProduct\SustainableProduct\Product.mdf;Integrated Security=True";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = @"INSERT INTO Products 
+            (ProductName, Description, Price, Brand, Category, SustainabilityTags, EstimatedCarbonFootprint, Image)
+            VALUES (@name, @desc, @price, @brand, @cat, @tags, @carbon, @image)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@desc", description);
+                    cmd.Parameters.AddWithValue("@price", price);
+                    cmd.Parameters.AddWithValue("@brand", brand);
+                    cmd.Parameters.AddWithValue("@cat", category);
+                    cmd.Parameters.AddWithValue("@tags", tags);
+                    cmd.Parameters.AddWithValue("@carbon", carbon);
+                    if (imageBytes != null)
+                        cmd.Parameters.Add("@image", SqlDbType.VarBinary).Value = imageBytes;
+                    else
+                        cmd.Parameters.Add("@image", SqlDbType.VarBinary).Value = DBNull.Value;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+
+            MessageBox.Show("Ürün başarıyla kaydedildi!");
+        }
+
     }
 }

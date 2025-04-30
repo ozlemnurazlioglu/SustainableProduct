@@ -50,6 +50,7 @@ namespace SustainableProduct
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -239,12 +240,24 @@ namespace SustainableProduct
             // pictureBox6
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Ivory;
-            this.pictureBox6.Location = new System.Drawing.Point(36, 189);
+            this.pictureBox6.Location = new System.Drawing.Point(44, 155);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(236, 287);
             this.pictureBox6.TabIndex = 20;
             this.pictureBox6.TabStop = false;
             this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Chartreuse;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.Location = new System.Drawing.Point(859, 512);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 56);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form3
             // 
@@ -252,6 +265,7 @@ namespace SustainableProduct
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.ClientSize = new System.Drawing.Size(1183, 664);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
@@ -307,5 +321,6 @@ namespace SustainableProduct
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Button button1;
     }
 }
