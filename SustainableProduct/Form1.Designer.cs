@@ -64,6 +64,7 @@ namespace SustainableProduct
             this.label2.Size = new System.Drawing.Size(142, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Registration";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Password
             // 
@@ -91,6 +92,7 @@ namespace SustainableProduct
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(493, 223);
             this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(155, 22);
             this.textBoxPassword.TabIndex = 5;
             this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
